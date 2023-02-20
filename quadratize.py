@@ -5,21 +5,22 @@ import numpy as np
 
 quad_odd_x = [i for i in range(0,26)]
 
-quad_1_ix = []
 quad_1_x = []
 quad_1_y = []
 
-quad_2_ix = []
 quad_2_x = []
 quad_2_y = []
 
-quad_3_ix = []
 quad_3_x = []
 quad_3_y = []
 
-quad_4_ix = []
 quad_4_x = []
 quad_4_y = []
+
+quad_top_x = []
+quad_top_y = []
+quad_btm_x = []
+quad_btm_y = []
 
 for x in quad_odd_x:
     if x % 2 == 1:
@@ -30,19 +31,21 @@ for x in quad_odd_x:
         y_max_bottom = 12
     for y in range(13):
         if y < y_max_top:
-            quad_1_ix.extend([(x,y)])
+            quad_top_x.extend([x])
+            quad_top_y.extend([y])
+            
             quad_1_x.extend([x])
             quad_1_y.extend([y])
             
-            quad_2_ix.extend([(x+26,y)])
             quad_2_x.extend([x+26])
             quad_2_y.extend([y])
         if y < y_max_bottom:
-            quad_3_ix.extend([(x,y_max_top + y)])
+            quad_btm_x.extend([x])
+            quad_btm_y.extend([y])
+            
             quad_3_x.extend([x])
             quad_3_y.extend([y_max_top + y])
             
-            quad_4_ix.extend([(x+26,y_max_top + y)])
             quad_4_x.extend([x+26])
             quad_4_y.extend([y_max_top+y])
 			
@@ -100,16 +103,16 @@ def flatMatQuadMode(pixel_mat,grid_pos = 'top'):
 
 def flatMatQuads(pixel_mat):
     false_mat_1 = np.zeros((26,13))
-    false_mat_1[quad_1_x,quad_1_y] = pixel_mat[quad_1_x,quad_1_y]
+    false_mat_1[quad_top_x,quad_top_y] = pixel_mat[quad_1_x,quad_1_y]
     
     false_mat_2 = np.zeros((26,13))
-    false_mat_2[quad_1_x,quad_1_y] = pixel_mat[quad_2_x,quad_2_y]
+    false_mat_2[quad_top_x,quad_top_y] = pixel_mat[quad_2_x,quad_2_y]
     
     false_mat_3 = np.zeros((26,13))
-    false_mat_3[quad_1_x,quad_1_y] = pixel_mat[quad_3_x,quad_3_y]
+    false_mat_3[quad_btm_x,quad_btm_y] = pixel_mat[quad_3_x,quad_3_y]
     
     false_mat_4 = np.zeros((26,13))
-    false_mat_4[quad_1_x,quad_1_y] = pixel_mat[quad_4_x,quad_4_y]
+    false_mat_4[quad_btm_x,quad_btm_y] = pixel_mat[quad_4_x,quad_4_y]
     
     quad_1_flat = flatMatQuadMode(false_mat_1, grid_pos = 'top')
     quad_2_flat = flatMatQuadMode(false_mat_2, grid_pos = 'top')
