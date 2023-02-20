@@ -55,8 +55,8 @@ DISPLAY_FPS = False
 """Whether to display the FPS when running (can reduce performance)"""
 
 
-ARX = 25
-ARY = 13
+ARX = 52
+ARY = 25
 N_PIXELS = ARX*ARY
 
 """Number of pixels in the LED strip (must match ESP8266 firmware)"""

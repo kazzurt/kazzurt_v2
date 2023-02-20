@@ -14,6 +14,7 @@ import led
 import sys
 from color_pal import pallette
 from fn.colorwave0 import colorwave0
+from fn.colorwave02 import colorwave02
 from fn.colorwave7 import colorwave7
 from fn.bessel1 import bessel1
 from fn.bessel2 import bessel2
@@ -384,6 +385,10 @@ def visualize_colorwave0(y):
     global p
     p = colorwave0.colorwave0(y)
     return p
+def visualize_colorwave02(y):
+    global p
+    p = colorwave02.colorwave02(y)
+    return p
 def visualize_colorwave1(y):
     global p
     p = colorwave1.colorwave1(y)
@@ -601,6 +606,8 @@ elif sys.argv[1] == "meditation":
         visualization_type = visualize_meditation
 elif sys.argv[1] == "colorwave0":
         visualization_type = visualize_colorwave0
+elif sys.argv[1] == "colorwave02":
+        visualization_type = visualize_colorwave02
 elif sys.argv[1] == "colorwave1":
         visualization_type = visualize_colorwave1
 elif sys.argv[1] == "colorwave2":
