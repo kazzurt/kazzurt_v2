@@ -16,6 +16,7 @@ from color_pal import pallette
 from fn.colorwave0 import colorwave0
 from fn.colorwave02 import colorwave02
 from fn.colorwave7 import colorwave7
+from fn.colorwave3 import colorwave3
 from fn.bessel1 import bessel1
 from fn.bessel2 import bessel2
 from fn.bessel3 import bessel3
@@ -396,6 +397,10 @@ def visualize_colorwave1(y):
 def visualize_colorwave2(y):
     global p
     p = colorwave2.colorwave2(y)
+    return p
+def visualize_colorwave3(y):
+    global p
+    p = colorwave3.colorwave3(y)
     return p
 def visualize_colorwave7(y):
     global p
