@@ -56,8 +56,8 @@ DISPLAY_FPS = False
 
 
 ARX = 52
-ARY = 25
-N_PIXELS = ARX*ARY
+ARY = 26
+N_PIXELS = 1300
 
 """Number of pixels in the LED strip (must match ESP8266 firmware)"""
 

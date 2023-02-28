@@ -169,7 +169,7 @@ def flatMatQuadMode(pixel_mat,grid_pos = 'top'):
 # if layout = matrix, pixel_mat = np.zeros((52,25))
 # if layout = mirrored, pixel_mat = np.zeros((52,26))
 
-def flatMatQuads(pixel_mat, layout = 'matrix'):
+def flatMatQuads(pixel_mat, layout = 'mirror'):
 # >>>>>>> 7fba80f130ccdfe9c2aaf9ac28e0d5541dcb1970
     
     if layout == 'matrix':
@@ -181,7 +181,7 @@ def flatMatQuads(pixel_mat, layout = 'matrix'):
 
         false_mat_3 = np.zeros((26,13))
         false_mat_3[quad_btm_x,quad_btm_y] = pixel_mat[quad_3_x,quad_3_y]
-
+        #false_mat_3 = np.fliplr(false_mat_3)
         false_mat_4 = np.zeros((26,13))
         false_mat_4[quad_btm_x,quad_btm_y] = pixel_mat[quad_4_x,quad_4_y]
 
@@ -198,7 +198,7 @@ def flatMatQuads(pixel_mat, layout = 'matrix'):
 
         false_mat_3 = np.zeros((26,13))
         false_mat_3[quad_left_x,quad_left_y] = pixel_mat[quad_3_x_t,quad_3_y_t]
-
+        
         false_mat_4 = np.zeros((26,13))
         false_mat_4[quad_right_x,quad_right_y] = pixel_mat[quad_4_x_t,quad_4_y_t]
 
