@@ -22,13 +22,37 @@ quad_top_y = []
 quad_btm_x = []
 quad_btm_y = []
 
+
+quad_1_x_t = []
+quad_1_y_t = []
+
+quad_2_x_t = []
+quad_2_y_t = []
+
+quad_3_x_t = []
+quad_3_y_t = []
+
+quad_4_x_t = []
+quad_4_y_t = []
+
+quad_left_x = []
+quad_left_y = []
+quad_right_x = []
+quad_right_y = []
+
 for x in quad_odd_x:
     if x % 2 == 1:
         y_max_top = 12
         y_max_bottom = 13
+        
+        y_max_left = 12
+        y_max_right = 13
     else:
         y_max_top = 13
         y_max_bottom = 12
+        
+        y_max_left = 13
+        y_max_right = 12
     for y in range(13):
         if y < y_max_top:
             quad_top_x.extend([x])
@@ -39,6 +63,17 @@ for x in quad_odd_x:
             
             quad_2_x.extend([x+26])
             quad_2_y.extend([y])
+            
+            
+            quad_left_x.extend([x])
+            quad_left_y.extend([y])
+            
+            quad_1_x_t.extend([x])
+            quad_1_y_t.extend([y])
+            
+            quad_3_x_t.extend([x])
+            quad_3_y_t.extend([y + y_max_left])
+            
         if y < y_max_bottom:
             quad_btm_x.extend([x])
             quad_btm_y.extend([y])
@@ -48,6 +83,16 @@ for x in quad_odd_x:
             
             quad_4_x.extend([x+26])
             quad_4_y.extend([y_max_top+y])
+            
+            
+            quad_right_x.extend([x])
+            quad_right_y.extend([y])
+            
+            quad_2_x_t.extend([x + 26])
+            quad_2_y_t.extend([y])
+            
+            quad_4_x_t.extend([x + 26])
+            quad_4_y_t.extend([y + y_max_right])
 			
 pop_ix_quad1 = [i for i in range(25,26*2*7+1,26*2)] + [i for i in range(26,26*2*6+1,26*2)]
 pop_ix_quad1.sort()
@@ -101,31 +146,73 @@ def flatMatQuadMode(pixel_mat,grid_pos = 'top'):
                         
     return np.array(flattened_mat)
 
-def flatMatQuads(pixel_mat):
-    false_mat_1 = np.zeros((26,13))
-    false_mat_1[quad_top_x,quad_top_y] = pixel_mat[quad_1_x,quad_1_y]
+# <<<<<<< HEAD
+# def flatMatQuads(pixel_mat):
+#     false_mat_1 = np.zeros((26,13))
+#     false_mat_1[quad_top_x,quad_top_y] = pixel_mat[quad_1_x,quad_1_y]
+#     
+#     false_mat_2 = np.zeros((26,13))
+#     false_mat_2[quad_top_x,quad_top_y] = pixel_mat[quad_2_x,quad_2_y]
+#     #false_mat_2 = np.flipud(false_mat_2)
+#     
+#     false_mat_3 = np.zeros((26,13))
+#     false_mat_3[quad_btm_x,quad_btm_y] = pixel_mat[quad_3_x,quad_3_y]
+#     #false_mat_3 = np.fliplr(np.flipud(false_mat_3))
+#     
+#     false_mat_4 = np.zeros((26,13))
+#     false_mat_4[quad_btm_x,quad_btm_y] = pixel_mat[quad_4_x,quad_4_y]
+# =======
+
+
+# if layout = matrix, pixel_mat = np.zeros((52,25))
+# if layout = mirrored, pixel_mat = np.zeros((52,26))
+
+def flatMatQuads(pixel_mat, layout = 'matrix'):
+# >>>>>>> 7fba80f130ccdfe9c2aaf9ac28e0d5541dcb1970
     
-    false_mat_2 = np.zeros((26,13))
-    false_mat_2[quad_top_x,quad_top_y] = pixel_mat[quad_2_x,quad_2_y]
-    #false_mat_2 = np.flipud(false_mat_2)
-    
-    false_mat_3 = np.zeros((26,13))
-    false_mat_3[quad_btm_x,quad_btm_y] = pixel_mat[quad_3_x,quad_3_y]
-    #false_mat_3 = np.fliplr(np.flipud(false_mat_3))
-    
-    false_mat_4 = np.zeros((26,13))
-    false_mat_4[quad_btm_x,quad_btm_y] = pixel_mat[quad_4_x,quad_4_y]
-    
-    quad_1_flat = flatMatQuadMode(false_mat_1, grid_pos = 'top')
-    quad_2_flat = flatMatQuadMode(false_mat_2, grid_pos = 'top')
-    quad_3_flat = flatMatQuadMode(false_mat_3, grid_pos = 'bottom')
-    quad_4_flat = flatMatQuadMode(false_mat_4, grid_pos = 'bottom')
+    if layout == 'matrix':
+        false_mat_1 = np.zeros((26,13))
+        false_mat_1[quad_top_x,quad_top_y] = pixel_mat[quad_1_x,quad_1_y]
+
+        false_mat_2 = np.zeros((26,13))
+        false_mat_2[quad_top_x,quad_top_y] = pixel_mat[quad_2_x,quad_2_y]
+
+        false_mat_3 = np.zeros((26,13))
+        false_mat_3[quad_btm_x,quad_btm_y] = pixel_mat[quad_3_x,quad_3_y]
+
+        false_mat_4 = np.zeros((26,13))
+        false_mat_4[quad_btm_x,quad_btm_y] = pixel_mat[quad_4_x,quad_4_y]
+
+        quad_1_flat = flatMatQuadMode(false_mat_1, grid_pos = 'top')
+        quad_2_flat = flatMatQuadMode(false_mat_2, grid_pos = 'top')
+        quad_3_flat = flatMatQuadMode(false_mat_3, grid_pos = 'bottom')
+        quad_4_flat = flatMatQuadMode(false_mat_4, grid_pos = 'bottom')
+    else:
+        false_mat_1 = np.zeros((26,13))
+        false_mat_1[quad_left_x,quad_left_y] = pixel_mat[quad_1_x_t,quad_1_y_t]
+
+        false_mat_2 = np.zeros((26,13))
+        false_mat_2[quad_right_x,quad_right_y] = pixel_mat[quad_2_x_t,quad_2_y_t]
+
+        false_mat_3 = np.zeros((26,13))
+        false_mat_3[quad_left_x,quad_left_y] = pixel_mat[quad_3_x_t,quad_3_y_t]
+
+        false_mat_4 = np.zeros((26,13))
+        false_mat_4[quad_right_x,quad_right_y] = pixel_mat[quad_4_x_t,quad_4_y_t]
+
+        quad_1_flat = flatMatQuadMode(false_mat_1, grid_pos = 'top')
+        quad_2_flat = flatMatQuadMode(false_mat_2, grid_pos = 'bottom')
+        quad_3_flat = flatMatQuadMode(false_mat_3, grid_pos = 'top')
+        quad_4_flat = flatMatQuadMode(false_mat_4, grid_pos = 'bottom')
+        
     
     quad_1_flat = np.delete(quad_1_flat, pop_ix_quad1)
     quad_2_flat = np.delete(quad_2_flat, pop_ix_quad1)
     
     quad_3_flat = np.delete(quad_3_flat, pop_ix_quad1)
     quad_4_flat = np.delete(quad_4_flat, pop_ix_quad1)
+    
+    return np.concatenate((quad_1_flat ,quad_2_flat, quad_3_flat, quad_4_flat), axis = None)
     
     return np.concatenate((quad_1_flat ,quad_2_flat, quad_3_flat, quad_4_flat), axis = None)
     
