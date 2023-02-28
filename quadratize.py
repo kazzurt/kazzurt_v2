@@ -107,9 +107,11 @@ def flatMatQuads(pixel_mat):
     
     false_mat_2 = np.zeros((26,13))
     false_mat_2[quad_top_x,quad_top_y] = pixel_mat[quad_2_x,quad_2_y]
+    #false_mat_2 = np.flipud(false_mat_2)
     
     false_mat_3 = np.zeros((26,13))
     false_mat_3[quad_btm_x,quad_btm_y] = pixel_mat[quad_3_x,quad_3_y]
+    #false_mat_3 = np.fliplr(np.flipud(false_mat_3))
     
     false_mat_4 = np.zeros((26,13))
     false_mat_4[quad_btm_x,quad_btm_y] = pixel_mat[quad_4_x,quad_4_y]
@@ -121,6 +123,7 @@ def flatMatQuads(pixel_mat):
     
     quad_1_flat = np.delete(quad_1_flat, pop_ix_quad1)
     quad_2_flat = np.delete(quad_2_flat, pop_ix_quad1)
+    
     quad_3_flat = np.delete(quad_3_flat, pop_ix_quad1)
     quad_4_flat = np.delete(quad_4_flat, pop_ix_quad1)
     
