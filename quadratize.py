@@ -4,6 +4,7 @@
 import numpy as np
 
 quad_odd_x = [i for i in range(0,26)]
+quad_rev_y = [i for i in range(12,-1,-1)]
 
 quad_1_x = []
 quad_1_y = []
@@ -72,7 +73,8 @@ for x in quad_odd_x:
             quad_1_y_t.extend([y])
             
             quad_3_x_t.extend([x])
-            quad_3_y_t.extend([y + y_max_left])
+#             quad_3_y_t.extend([y + y_max_left]) # For normal wired 3rd grid
+            quad_3_y_t.extend([quad_rev_y[y + 13 - y_max_left] + y_max_left]) # for reverse wired 3rd grid
             
         if y < y_max_bottom:
             quad_btm_x.extend([x])
@@ -193,8 +195,6 @@ def flatMatQuads(pixel_mat, layout = 'matrix'):
     quad_2_flat = np.delete(quad_2_flat, pop_ix_quad1)
     quad_3_flat = np.delete(quad_3_flat, pop_ix_quad1)
     quad_4_flat = np.delete(quad_4_flat, pop_ix_quad1)
-    
-    return np.concatenate((quad_1_flat ,quad_2_flat, quad_3_flat, quad_4_flat), axis = None)
     
     return np.concatenate((quad_1_flat ,quad_2_flat, quad_3_flat, quad_4_flat), axis = None)
     
