@@ -48,6 +48,7 @@ from fn.colorwave1 import colorwave1
 from fn.colorwave2 import colorwave2
 from fn.colorwave3 import colorwave3
 from fn.colorwave4 import colorwave4
+from fn.colorwave01 import colorwave01
 from fn.colorwave02 import colorwave02
 from fn.colorwave22 import colorwave22
 from fn.colorwave23 import colorwave23
@@ -292,28 +293,29 @@ p22 = np.tile(1.0, (3, config.N_PIXELS)) #Transition p
 trns = ["Random Outage","Random Innage","Color Innage","Rainfall","Dark Rain","block in","Tic trans","Block Out"]
 #nergy1"
 #unused: "rowl3",sweetscroll
-functs = ["bump","scroll","energy_gaps","rowl",\
-          "spunk","inc2",\
-          "scroll","simplescroll","scroll4",\
-          "trans_wave","half_wave",\
-          "incpal","tic_pal","spectrum","tetris1","tetris2",\
-          "pong","breathe","breathe2","blockage","energy_base","blockage2","becca_breathe",\
-          "steve_breathe","kuwave2","palwave","slide",\
-          "radial_wave","radial_wave2","radial_wave4","radial_wave5","radial_wave6","radial_pal",\
-          "newt","newt2","newt3","newt4",\
-          "colorwave1","colorwave22","colorwave23","colorwave24","colorwave26","colorwave6",\
-          "fireworks","rainfall","liferan",\
-          "ticsfull1","ticsfull2", "ticpal2",\
-          "pointwave2",\
-          "umbrella","umbrella2",
-          "insta","colorwave0","tetris1","subs1","subs2","fract1","fract2","heart1",\
-          "drop", \
-          "bessel1","bessel2","lavalamp","bessel3","bessel4","bessel1","bessel2","bessel3","bessel4","subs1","subs2",\
-          "umbrella3","umbrella4","umbrella5","umbrella7"]   
-
+# functs = ["bump","scroll","energy_gaps","rowl",\
+#           "spunk","inc2",\
+#           "scroll","simplescroll","scroll4",\
+#           "trans_wave","half_wave",\
+#           "incpal","tic_pal","spectrum","tetris1","tetris2",\
+#           "pong","breathe","breathe2","blockage","energy_base","blockage2","becca_breathe",\
+#           "steve_breathe","kuwave2","palwave","slide",\
+#           "radial_wave","radial_wave2","radial_wave4","radial_wave5","radial_wave6","radial_pal",\
+#           "newt","newt2","newt3","newt4",\
+#           "colorwave1","colorwave22","colorwave23","colorwave24","colorwave26","colorwave6",\
+#           "fireworks","rainfall","liferan",\
+#           "ticsfull1","ticsfull2", "ticpal2",\
+#           "pointwave2",\
+#           "umbrella","umbrella2",
+#           "insta","colorwave0","tetris1","subs1","subs2","fract1","fract2","heart1",\
+#           "drop", \
+#           "bessel1","bessel2","lavalamp","bessel3","bessel4","bessel1","bessel2","bessel3","bessel4","subs1","subs2",\
+#           "umbrella3","umbrella4","umbrella5","umbrella7"]   
+functs = ["umbrella","colorwave01","colorwave02","radial_wave","radial_wave3","radial_wave4","radial_wave5","radial_wave6","umbrella",\
+          "energy_gaps","sweetscroll","blockage","blockage2"]
 #Create array of shuffled function numbers
 funs  = np.linspace(0,len(functs)-1,len(functs)).astype(int)
-np.random.shuffle(funs)
+#np.random.shuffle(funs)
 ft    = 0
 fun   = funs[ft]
 
@@ -322,10 +324,10 @@ print('Total Functions: {:.0f}'.format(len(functs)))
 trcn   = False
 ling   = True
 bltyp  = 1
-
+umb_init = 0
 #Main function that calls all others. Each subfunction can be called independently
 
-nm = 75
+nm = 25
 t11 = 50+nm
 t12 = 100+nm
 t13 = 150+nm
@@ -335,18 +337,12 @@ def visualize_kurt(y):
     global p, loop, a, bb, fun, ct, s, kz3, mp, m2, m3, m4, p2, bby, lst_time, fun_total, fun_cut, transc, trs, tran, last_fun, coms, csp, \
            arry, ind,  cpal, ga, bc, cdc, lpad, comfun, counter, spark, dim, funs, ft, tri, tt, funt, t01, t02, t03, t11, t12, t13, t14, \
            p3, p11, p22, trns, functs,\
-           trcn, ling, bltyp, butc
+           trcn, ling, bltyp, butc, umb_init
 
     ct += 1  #Primary counter
-    buts = kzbutfun.kzlaunchpad()
+    #buts = kzbutfun.kzlaunchpad()
     butc+=1
-    if buts is not None:
-        print('Launchpad key: {:.0f}'.format(buts[0]))
-        if butc>=15:
-            fun = buts[0]-1
-            print('=========================================New Function: ', functs[fun])
-            butc = 0
-            #ct = t14
+
     if ft>=len(funs)-1: #If we've gone through all functions, reshuffle
         print("===========================================Reshuffle funs")
         #np.random.shuffle(funs)
@@ -377,6 +373,8 @@ def visualize_kurt(y):
         co2 = (.5-1)/(t13-t14)*(ct-t13) + .5
         p3 = zeroup(co1*p11 + co2*p22)
     elif ct >=t14:
+        if functs[fun] == "umbrella":
+            umb_init = rn.randint(0,5)
         ct = 0
         ft += 1        #increment function index
         fun = funs[ft] #redefine function
@@ -388,7 +386,7 @@ def visualize_kurt(y):
 #     p3 = zeroup(p3)            #No negative numbers being sent to net
     if np.max(p3) > 255:
         p3 = 255*p3/np.max(p3)     #renormalize to 255 just in case
-    
+        
     #p3 *= 1  #brightness fraction
        
     return p3 
@@ -462,6 +460,10 @@ def allfuns(y, fun, functs):
 def visualize_colorwave0(y):
     global p
     p = colorwave0.colorwave0(y)
+    return p
+def visualize_colorwave01(y):
+    global p
+    p = colorwave01.colorwave01(y)
     return p
 def visualize_colorwave02(y):
     global p
@@ -696,9 +698,15 @@ def visualize_energy_gaps(y):
     p = energies.energy_gaps(y)
     return p
 #########################################
+umb_cnt = 0
+
 def visualize_umbrella(y):
-    global p 
-    p = umbrella1.umbrella1(y)
+    global p, umb_cnt, umb_init
+    p = umbrella1.umbrella1(y,umb_init)
+#     umb_cnt+=1
+#     if umb_cnt> 50:
+#         umb_init = rn.randint(0,5)
+#         umb_cnt = 0
     return p
 def visualize_umbrella2(y):
     global p 
@@ -1087,6 +1095,8 @@ elif sys.argv[1] == "meditation":
         visualization_type = visualize_meditation
 elif sys.argv[1] == "colorwave0":
         visualization_type = visualize_colorwave0
+elif sys.argv[1] == "colorwave01":
+        visualization_type = visualize_colorwave01
 elif sys.argv[1] == "colorwave02":
         visualization_type = visualize_colorwave02
 elif sys.argv[1] == "colorwave1":
