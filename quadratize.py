@@ -48,12 +48,18 @@ for x in quad_odd_x:
         
         y_max_left = 12
         y_max_right = 13
+        
+        incrementer_left = 1
+        incrementer_rt = 0
     else:
         y_max_top = 13
         y_max_bottom = 12
         
         y_max_left = 13
         y_max_right = 12
+        
+        incrementer_left = 0
+        incrementer_rt = 1
     for y in range(13):
         if y < y_max_top:
             quad_top_x.extend([x])
@@ -73,8 +79,8 @@ for x in quad_odd_x:
             quad_1_y_t.extend([y])
             
             quad_3_x_t.extend([x])
-#             quad_3_y_t.extend([y + y_max_left]) # For normal wired 3rd grid
-            quad_3_y_t.extend([quad_rev_y[y + 13 - y_max_left] + y_max_left]) # for reverse wired 3rd grid
+#             quad_3_y_t.extend([y + y_max_left + incrementer_left]) # For normal wired 3rd grid
+            quad_3_y_t.extend([quad_rev_y[y + 13 - y_max_left] + y_max_left + incrementer_left]) # for reverse wired 3rd grid
             
         if y < y_max_bottom:
             quad_btm_x.extend([x])
@@ -94,7 +100,7 @@ for x in quad_odd_x:
             quad_2_y_t.extend([y])
             
             quad_4_x_t.extend([x + 26])
-            quad_4_y_t.extend([y + y_max_right])
+            quad_4_y_t.extend([y + y_max_right + incrementer_rt])
 			
 pop_ix_quad1 = [i for i in range(25,26*2*7+1,26*2)] + [i for i in range(26,26*2*6+1,26*2)]
 pop_ix_quad1.sort()
