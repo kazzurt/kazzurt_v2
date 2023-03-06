@@ -84,7 +84,7 @@ from fn.steve_breathe import steve_breathe
 from fn.becca_breathe import becca_breathe
 from fn.breathe2 import breathe2
 from fn.breathe import breathe
-
+from fn.umbrella_dark import umbrella_dark
 from fn.ticpal2 import ticpal2
 from fn.pointwave import pointwave
 from fn.pointwave2 import pointwave2
@@ -311,8 +311,9 @@ trns = ["Random Outage","Random Innage","Color Innage","Rainfall","Dark Rain","b
 #           "drop", \
 #           "bessel1","bessel2","lavalamp","bessel3","bessel4","bessel1","bessel2","bessel3","bessel4","subs1","subs2",\
 #           "umbrella3","umbrella4","umbrella5","umbrella7"]   
-functs = ["umbrella","colorwave01","colorwave02","radial_wave","radial_wave3","radial_wave4","radial_wave5","radial_wave6","umbrella",\
-          "energy_gaps","sweetscroll","blockage","blockage2"]
+functs = ["umbrella","colorwave01","colorwave02","bessel1","radial_wave","breathe","radial_wave3","radial_wave4","bessel2",\
+          "breathe2","radial_wave5","umbrella",\
+          "bessel3","energy_gaps","sweetscroll","blockage","blockage2","bessel4","umbrella_dark"]
 #Create array of shuffled function numbers
 funs  = np.linspace(0,len(functs)-1,len(functs)).astype(int)
 #np.random.shuffle(funs)
@@ -328,10 +329,10 @@ umb_init = 0
 #Main function that calls all others. Each subfunction can be called independently
 
 nm = 25
-t11 = 50+nm
-t12 = 100+nm
-t13 = 150+nm
-t14 = 200+nm
+t11 = 100
+t12 = 125
+t13 = 150
+t14 = 175
 butc = 0
 def visualize_kurt(y):
     global p, loop, a, bb, fun, ct, s, kz3, mp, m2, m3, m4, p2, bby, lst_time, fun_total, fun_cut, transc, trs, tran, last_fun, coms, csp, \
@@ -703,38 +704,11 @@ umb_cnt = 0
 def visualize_umbrella(y):
     global p, umb_cnt, umb_init
     p = umbrella1.umbrella1(y,umb_init)
-#     umb_cnt+=1
-#     if umb_cnt> 50:
-#         umb_init = rn.randint(0,5)
-#         umb_cnt = 0
     return p
-def visualize_umbrella2(y):
-    global p 
-    p = umbrella2.umbrella2(y)
-    return p
-def visualize_umbrella3(y):
-    global p 
-    p = umbrella3.umbrella3(y)
-    return p
-def visualize_umbrella4(y):
-    global p 
-    p = umbrella4.umbrella4(y)
-    return p
-def visualize_umbrella5(y):
-    global p 
-    p = umbrella5.umbrella5(y)
-    return p
-def visualize_umbrella6(y):
-    global p 
-    p = umbrella6.umbrella6(y)
-    return p
-def visualize_umbrella7(y):
-    global p 
-    p = umbrella7.umbrella7(y)
-    return p
-def visualize_umbrella8(y):
-    global p 
-    p = umbrella8.umbrella8(y)
+
+def visualize_umbrella_dark(y):
+    global p, umb_cnt, umb_init
+    p = umbrella_dark.umbrella_dark(y,umb_init)
     return p
 #########################################################################
 # The tic family
@@ -1181,6 +1155,8 @@ elif sys.argv[1] == 'bessel3':
         visualization_type = visualize_bessel3
 elif sys.argv[1] == 'bessel4':
         visualization_type = visualize_bessel4
+elif sys.argv[1] == 'umbrella_dark':
+        visualization_type = visualize_umbrella_dark
 #else: #sys.argv[1] == "tetris":
         #visualization_type = visualize_slow_wave
 visualization_effect = visualization_type
