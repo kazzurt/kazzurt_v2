@@ -90,7 +90,7 @@ from fn.pointwave import pointwave
 from fn.pointwave2 import pointwave2
 from fn.energy_base import energy_base
 from fn.subs1 import subs1
-# from fn.subs2 import subs2
+from fn.subs_new import subs_new
 # from fn.insta import insta
 # from fn.heart1 import heart1
 # from fn.fract1 import fract1
@@ -310,10 +310,10 @@ trns = ["Random Outage","Random Innage","Color Innage","Rainfall","Dark Rain","b
 #           "insta","colorwave0","tetris1","subs1","subs2","fract1","fract2","heart1",\
 #           "drop", \
 #           "bessel1","bessel2","lavalamp","bessel3","bessel4","bessel1","bessel2","bessel3","bessel4","subs1","subs2",\
-#           "umbrella3","umbrella4","umbrella5","umbrella7"]   
-functs = ["umbrella","colorwave01","colorwave02","bessel1","radial_wave","breathe","radial_wave3","radial_wave4","bessel2",\
+#           "umbrella3","umbrella4","umbrella5","umbrella7"]   "blockage","blockage2"
+functs = ["umbrella","colorwave26","colorwave01","colorwave02","bessel1","radial_wave","colorwave25","breathe","radial_wave3","radial_wave4","bessel2",\
           "breathe2","radial_wave5","umbrella",\
-          "bessel3","energy_gaps","sweetscroll","blockage","blockage2","bessel4","umbrella_dark"]
+          "bessel3","sweetscroll","bessel4","umbrella_dark", "subs_new","colorwave7","umbrella"]
 #Create array of shuffled function numbers
 funs  = np.linspace(0,len(functs)-1,len(functs)).astype(int)
 #np.random.shuffle(funs)
@@ -329,10 +329,10 @@ umb_init = 0
 #Main function that calls all others. Each subfunction can be called independently
 
 nm = 25
-t11 = 100
-t12 = 125
-t13 = 150
-t14 = 175
+t11 = 150
+t12 = 165
+t13 = 180
+t14 = 200
 butc = 0
 def visualize_kurt(y):
     global p, loop, a, bb, fun, ct, s, kz3, mp, m2, m3, m4, p2, bby, lst_time, fun_total, fun_cut, transc, trs, tran, last_fun, coms, csp, \
@@ -361,19 +361,19 @@ def visualize_kurt(y):
         co2 = (.5-0)/(t12-t11) * (ct-t11) + 0
         p3 = zeroup(co1*p11 + co2*p22)
 
-    elif ct >= t12 and ct <t13:
+    elif ct >= t12 and ct <t13:  #linger up
         p22 = allfuns(y, funs[ft+1], functs)
         co1 = .5
         co2 = .5
         p3 = zeroup(co1*p11 + co2*p22)
         
         #print(np.max(p22))
-    elif ct>=t13 and ct<t14:
+    elif ct>=t13 and ct<t14:  #plateu overlap
         p22 = allfuns(y, funs[ft+1], functs)
         co1 = (0-.5)/(t14-t13)*(ct-t13) + .5
         co2 = (.5-1)/(t13-t14)*(ct-t13) + .5
         p3 = zeroup(co1*p11 + co2*p22)
-    elif ct >=t14:
+    elif ct >=t14: #linger down
         if functs[fun] == "umbrella":
             umb_init = rn.randint(0,5)
         ct = 0
@@ -848,8 +848,8 @@ def visualize_energy_base2(y):
 def visualize_subs1(y):
     p = subs1.subs1(y)
     return p
-def visualize_subs2(y):
-    p = subs2.subs2(y)
+def visualize_subs_new(y):
+    p = subs_new.subs_new(y)
     return p
 def visualize_insta(y):
     p = insta.insta(y)
@@ -1079,6 +1079,8 @@ elif sys.argv[1] == "colorwave22":
         visualization_type = visualize_colorwave22
 elif sys.argv[1] == "colorwave23":
         visualization_type = visualize_colorwave23
+elif sys.argv[1] == "colorwave25":
+        visualization_type = visualize_colorwave25
 elif sys.argv[1] == "colorwave26":
         visualization_type = visualize_colorwave26
 elif sys.argv[1] == "colorwave3":
@@ -1131,8 +1133,8 @@ elif sys.argv[1] == 'umbrella7':
         visualization_type = visualize_umbrella7        
 elif sys.argv[1] == 'subs1':
         visualization_type = visualize_subs1
-elif sys.argv[1] == 'subs2':
-        visualization_type = visualize_subs2
+elif sys.argv[1] == 'subs_new':
+        visualization_type = visualize_subs_new
 elif sys.argv[1] == 'insta':
         visualization_type = visualize_insta
 elif sys.argv[1] == 'fract1':
