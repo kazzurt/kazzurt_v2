@@ -51,7 +51,7 @@ USE_GUI = False
 USE_GUI2 = False
 """New gui"""
 
-DISPLAY_FPS = False
+DISPLAY_FPS = True
 """Whether to display the FPS when running (can reduce performance)"""
 
 
@@ -92,7 +92,7 @@ MIN_FREQUENCY = 255
 MAX_FREQUENCY = 12000
 """Frequencies above this value will be removed during audio processing"""
 
-N_FFT_BINS = 32
+N_FFT_BINS = 1
 """Number of frequency bins to use when transforming audio to frequency domain
 
 Fast Fourier transforms are used to transform time-domain audio data to the
@@ -110,5 +110,5 @@ There is no point using more bins than there are pixels on the LED strip.
 N_ROLLING_HISTORY = 1
 """Number of past audio frames to include in the rolling window"""
 
-MIN_VOLUME_THRESHOLD = 1e-7
+MIN_VOLUME_THRESHOLD = 1e-9
 """No music visualization displayed if recorded audio volume below threshold"""

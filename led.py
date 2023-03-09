@@ -173,5 +173,5 @@ if __name__ == '__main__':
     print('Starting LED strand test')
     while True:
         pixels = np.roll(pixels, 1, axis=1)
-        update()
-        time.sleep(.1)
+        #update()
+        #time.sleep(.01)
