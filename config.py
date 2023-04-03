@@ -51,7 +51,7 @@ USE_GUI = False
 USE_GUI2 = False
 """New gui"""
 
-DISPLAY_FPS = True
+DISPLAY_FPS = False
 """Whether to display the FPS when running (can reduce performance)"""
 
 

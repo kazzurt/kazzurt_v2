@@ -34,14 +34,14 @@ from Vis.vis_tests import tests
 from Vis.vis_ticfull import ticsfull
 from Vis.vis_kuwav import kuwav
 
-from fn.umbrella import umbrella1
-from fn.umbrella2 import umbrella2
-from fn.umbrella3 import umbrella3
-from fn.umbrella4 import umbrella4
-from fn.umbrella5 import umbrella5
-from fn.umbrella6 import umbrella6
-from fn.umbrella7 import umbrella7
-from fn.umbrella8 import umbrella8
+# from fn.umbrella import umbrella1
+# from fn.umbrella2 import umbrella2
+# from fn.umbrella3 import umbrella3
+# from fn.umbrella4 import umbrella4
+# from fn.umbrella5 import umbrella5
+# from fn.umbrella6 import umbrella6
+# from fn.umbrella7 import umbrella7
+# from fn.umbrella8 import umbrella8
 
 from fn.colorwave0 import colorwave0
 from fn.colorwave1 import colorwave1
@@ -84,13 +84,13 @@ from fn.steve_breathe import steve_breathe
 from fn.becca_breathe import becca_breathe
 from fn.breathe2 import breathe2
 from fn.breathe import breathe
-from fn.umbrella_dark import umbrella_dark
+# from fn.umbrella_dark import umbrella_dark
 from fn.ticpal2 import ticpal2
 from fn.pointwave import pointwave
 from fn.pointwave2 import pointwave2
 from fn.energy_base import energy_base
-from fn.subs1 import subs1
-from fn.subs_new import subs_new
+# from fn.subs1 import subs1
+# from fn.subs_new import subs_new
 # from fn.insta import insta
 # from fn.heart1 import heart1
 # from fn.fract1 import fract1
@@ -311,13 +311,12 @@ trns = ["Random Outage","Random Innage","Color Innage","Rainfall","Dark Rain","b
 #           "drop", \
 #           "bessel1","bessel2","lavalamp","bessel3","bessel4","bessel1","bessel2","bessel3","bessel4","subs1","subs2",\
 #           "umbrella3","umbrella4","umbrella5","umbrella7"]   "blockage","blockage2"
-functs = ["umbrella","colorwave26","colorwave01","colorwave02","bessel1","radial_wave","colorwave25","bessel2",\
-          "radial_wave5","umbrella",\
-          "bessel3","umbrella_dark","colorwave7","umbrella"]
+functs = ["colorwave01","colorwave02","bessel1","colorwave25","bessel2",\
+          "bessel3","colorwave7"]  #"colorwave26", radial_wave5
 #Create array of shuffled function numbers
 funs  = np.linspace(0,len(functs)-1,len(functs)).astype(int)
 #np.random.shuffle(funs)
-ft    = 12
+ft    = 4
 fun   = funs[ft]
 
 print('Starting Function: ', functs[fun])
@@ -332,7 +331,7 @@ nm = 25
 t11 = 150
 t12 = 165
 t13 = 180
-t14 = 200
+t14 = 190
 butc = 0
 def visualize_kurt(y):
     global p, loop, a, bb, fun, ct, s, kz3, mp, m2, m3, m4, p2, bby, lst_time, fun_total, fun_cut, transc, trs, tran, last_fun, coms, csp, \
@@ -389,7 +388,7 @@ def visualize_kurt(y):
         p3 = 255*p3/np.max(p3)     #renormalize to 255 just in case
         
     #p3 *= 1  #brightness fraction
-    print(np.max(p3))  
+    
     return p3 
     
 
@@ -1173,6 +1172,7 @@ if __name__ == '__main__':
     microphone.start_stream(microphone_update)
  
   
+
 
 
 
