@@ -311,13 +311,13 @@ trns = ["Random Outage","Random Innage","Color Innage","Rainfall","Dark Rain","b
 #           "drop", \
 #           "bessel1","bessel2","lavalamp","bessel3","bessel4","bessel1","bessel2","bessel3","bessel4","subs1","subs2",\
 #           "umbrella3","umbrella4","umbrella5","umbrella7"]   "blockage","blockage2"
-functs = ["umbrella","colorwave26","colorwave01","colorwave02","bessel1","radial_wave","colorwave25","bessel2",\
-          "radial_wave5","umbrella",\
-          "bessel3","umbrella_dark","colorwave7","umbrella"]
+functs = ["colorwave26","colorwave01","colorwave02","bessel1","radial_wave","colorwave25","bessel2",\
+          "radial_wave5",\
+          "bessel3","colorwave7"]
 #Create array of shuffled function numbers
 funs  = np.linspace(0,len(functs)-1,len(functs)).astype(int)
 #np.random.shuffle(funs)
-ft    = 12
+ft    = 0
 fun   = funs[ft]
 
 print('Starting Function: ', functs[fun])
@@ -1173,6 +1173,7 @@ if __name__ == '__main__':
     microphone.start_stream(microphone_update)
  
   
+
 
 
 
